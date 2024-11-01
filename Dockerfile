@@ -1,4 +1,14 @@
-FROM tomcat:8.0.20-jre8
+# Use a lightweight base image
+FROM alpine:latest
 
-# Expose port 8080 to access the application
+# Set the working directory
+WORKDIR /app
+
+# Copy the application files
+COPY target/maven-cloudaseem-app.war /app/
+
+# Expose the port
 EXPOSE 8080
+
+# Start the application
+CMD ["java", "-jar", "/app/maven-cloudaseem-app.war"]
